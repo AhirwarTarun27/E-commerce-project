@@ -1,0 +1,38 @@
+.registration-form {
+  width: 30vw;
+  margin: auto;
+  padding: 5% 0% 0% 10%;
+  height: 96vh;
+}
+
+.leftBox {
+  width: 46vw;
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  background-image: url('../assets/images/readingImage.jpg');
+  background-size: cover;
+}
+
+.positionRelative {
+  position: relative;
+}
+
+.formControl {
+  font-size: 1.8rem;
+  cursor: pointer;
+  width: 24vw;
+}
+
+.flexBox {
+  display: flex;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  width: 76vw;
+}
+
+.w100 {
+  width: 100%;
+}
