@@ -1,12 +1,10 @@
-import logo from './logo.svg';
+import React from 'react';
 import { Registrations } from './Pages/Registration';
 
-function App() {
+export const App: React.FC = () => {
   return (
     <div className='App'>
       <Registrations />
     </div>
   );
-}
-
-export default App;
+};

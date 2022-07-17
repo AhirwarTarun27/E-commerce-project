@@ -23,6 +23,7 @@ interface REGISTER_FORM_DATA {
   ConfirmPassword: string;
   Tnc: boolean;
   IsActive: number;
+  required: boolean | undefined;
 }
 
 export const Registrations = () => {
@@ -37,10 +38,15 @@ export const Registrations = () => {
     IsActive: 0,
   });
 
-  const { register, handleSubmit, formState, control } =
-    useForm<REGISTER_FORM_DATA>({
-      mode: 'onChange',
-    });
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+    control,
+  } = useForm<REGISTER_FORM_DATA>({
+    mode: 'onChange',
+  });
 
   const onFieldSubmit = () => {
     console.log('Form Submitted');
@@ -71,12 +77,16 @@ export const Registrations = () => {
                   placeholder='Name...'
                   label='Full Name'
                   variant='standard'
+                  inputRef={register({
+                    required: true,
+                    pattern: /^\S*$/,
+                  })}
                 />
-                {/* {errors.FullName && (
+                {errors.FullName && (
                   <div className='regMsg'>
                     Enter valid First name without spaces.
                   </div>
-                )} */}
+                )}
               </FormControl>
               <FormControl></FormControl>
             </Grid>
