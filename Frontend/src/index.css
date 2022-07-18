@@ -12,4 +12,14 @@ code {
     monospace;
 }
 
-.inputBoxes{ background: #fff; padding: 0 3px !important; font-size: 1.6rem; position: relative; z-index: 9 !important;}
+.inputBoxes {
+  background: #fff;
+  padding: 0 3px !important;
+  font-size: 1.6rem;
+  position: relative;
+  z-index: 9 !important;
+}
+
+.mb-25 {
+  margin-bottom: 1.5rem !important;
+}

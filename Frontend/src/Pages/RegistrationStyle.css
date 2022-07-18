@@ -36,3 +36,35 @@
 .w100 {
   width: 100%;
 }
+
+.errorMsg {
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #bd0617;
+  background-color: #eccccf;
+  box-shadow: 0 0 1px #721c24 inset;
+  padding: 0.4rem;
+  border-radius: 6px;
+  margin-top: -3px;
+}
+
+.TnC {
+  font-size: 1rem;
+  margin-left: 5px;
+  color: rgb(130, 34, 34);
+  text-decoration: none !important;
+}
+
+.formLoginBtn {
+  width: 155px;
+  padding: 8px;
+  margin-left: 0.6vw;
+  border-radius: 16px;
+  border: transparent;
+  background-image: linear-gradient(#858fdf, #bf086d);
+  margin-top: 20px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
