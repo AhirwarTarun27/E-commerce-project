@@ -1,17 +1,19 @@
 .loginBox {
-  width: 30vw;
+  width: 40vw;
   margin: auto;
   padding: 5% 0% 0% 10%;
   height: 96vh;
 }
 
 .leftBox {
-  width: 46vw;
+  width: 60vw;
   padding: 0;
   margin: 0;
   height: 100vh;
   background-image: url('../../assets/images/welcomeLogin.jpg');
-  background-size: 90%;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
 }
 
 .positionRelative {
@@ -21,7 +23,7 @@
 .formControl {
   font-size: 1.8rem;
   cursor: pointer;
-  width: 24vw;
+  width: 29vw;
 }
 
 .flexBox {
@@ -29,8 +31,6 @@
   margin: auto;
   align-items: center;
   justify-content: center;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  width: 76vw;
 }
 
 .w100 {
@@ -95,4 +95,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 29vw;
 }
+

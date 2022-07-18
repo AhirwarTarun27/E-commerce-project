@@ -11,7 +11,10 @@ import {
   FormControlLabel,
 } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRightLong } from '@fortawesome/free-solid-svg-icons';
+import { userService } from '../../services';
 
 interface REGISTER_FORM_DATA {
   FullName: string;
@@ -43,6 +46,7 @@ export const Registrations = () => {
   const [loginData, setIsLoginData] = React.useState({
     Email: '',
     Password: '',
+    ConfirmPassword: '',
   });
 
   const handleFieldChange = (target: any) => {
@@ -55,24 +59,20 @@ export const Registrations = () => {
     setRegistrationData({ ...registrationData, [target.name]: target.value });
 
     setIsLoginData({ ...loginData, [target.name]: target.value });
-    // console.log('registrationData:', registrationData);
-    // console.log('loginData:', loginData);
   };
 
-  const onFieldSubmit = (data: REGISTER_FORM_DATA) => {
+  const onFieldSubmit = async (data: REGISTER_FORM_DATA) => {
     try {
-      console.log('registrationnnnnn..........', data);
+      console.log('data:', data)
+      await userService.register(data);
     } catch (error) {
       console.log('error:', error);
     }
   };
 
-  const [errorMsg, setErrorMsg] = useState('');
-  const [submitMsg, serSubmitMsg] = useState(false);
-
   return (
     <div className='flexBox'>
-      <Box className='leftBox' />
+      <Box className='leftRegBox' />
       <form onSubmit={handleSubmit(onFieldSubmit)} autoComplete='off'>
         <Box className='registrationBox'>
           <h1>Sign Up</h1>
@@ -178,9 +178,9 @@ export const Registrations = () => {
                   })}
                   type={registrationData.ShowPassword ? 'text' : 'password'}
                 />
-                {((formState.touched.Password &&
-                  loginData.Password.length === 0) ||
-                  errors.Password) && (
+                {((formState.touched.ConfirmPassword &&
+                  loginData.ConfirmPassword.length === 0) ||
+                  errors.ConfirmPassword) && (
                   <div className='errorMsg'>
                     length must be between 8 and 16 characters and without
                     spaces.
@@ -188,20 +188,19 @@ export const Registrations = () => {
                 )}
               </FormControl>
               <FormControlLabel
-                className='d-block text-left m-0'
+                className='formControlLabel'
                 control={
                   <Checkbox
                     onChange={(e) => handleFieldChange(e.target)}
                     name='TnC'
                     color='primary'
-                    className='p-5 m-0'
                     inputRef={register({ required: true })}
                   />
                 }
                 label={
-                  <span className='tncText p-5'>
+                  <span className='tncText'>
                     I agree to the
-                    <a href='/eula'>
+                    <a>
                       <Typography variant='caption' color='primary'>
                         <a className='TnC'>Terms of User</a>
                       </Typography>
@@ -216,6 +215,7 @@ export const Registrations = () => {
                 className='registrationFormBtn'
                 value='Sign Up'
               />
+            <Link to='/login'><button className='loginBtn'>Sign in <FontAwesomeIcon icon={faRightLong} /></button></Link>
             </div>
           </Grid>
         </Box>

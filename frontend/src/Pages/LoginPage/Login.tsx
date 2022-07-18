@@ -93,13 +93,12 @@ export const Login = () => {
               </FormControl>
             </Grid>
             <div className='loginButtonSection'>
-              <div className='loginBtn'>
                 <input
                   type='submit'
                   className='loginFormBtn'
                   value='CONTINUE'
                 />
-              </div>
+              
               <div className='loginTexts'>
                 <p>or Connect with Social Media</p>
               </div>
