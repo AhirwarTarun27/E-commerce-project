@@ -1,4 +1,4 @@
-.registration-form {
+.registrationBox {
   width: 30vw;
   margin: auto;
   padding: 5% 0% 0% 10%;
@@ -10,7 +10,7 @@
   padding: 0;
   margin: 0;
   height: 100vh;
-  background-image: url('../assets/images/readingImage.jpg');
+  background-image: url('../../assets/images/readingImage.jpg');
   background-size: cover;
 }
 
@@ -56,7 +56,7 @@
   text-decoration: none !important;
 }
 
-.formLoginBtn {
+.registrationFormBtn {
   width: 155px;
   padding: 8px;
   margin-left: 0.6vw;

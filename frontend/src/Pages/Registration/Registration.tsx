@@ -1,20 +1,14 @@
 import './RegistrationStyle.css';
-import '../index.css';
+import '../../index.css';
 import React, { useState } from 'react';
 import {
   Grid,
   Box,
   FormControl,
   TextField,
-  InputLabel,
-  Input,
-  FormHelperText,
-  OutlinedInput,
-  InputAdornment,
   Typography,
   Checkbox,
   FormControlLabel,
-  Button,
 } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -39,10 +33,9 @@ export const Registrations = () => {
     ConfirmPassword: '',
     Tnc: false,
     ShowPassword: false,
-    IsActive: 0,
   });
 
-  const { register, handleSubmit, formState, errors, control } =
+  const { register, handleSubmit, formState, errors } =
     useForm<REGISTER_FORM_DATA>({
       mode: 'onChange',
     });
@@ -81,7 +74,7 @@ export const Registrations = () => {
     <div className='flexBox'>
       <Box className='leftBox' />
       <form onSubmit={handleSubmit(onFieldSubmit)} autoComplete='off'>
-        <Box className='registration-form'>
+        <Box className='registrationBox'>
           <h1>Sign Up</h1>
           <Grid
             container
@@ -138,7 +131,7 @@ export const Registrations = () => {
                     pattern: /^\S*$/,
                   })}
                 />
-                {errors.FullName && (
+                {errors.UserName && (
                   <div className='errorMsg'>
                     Enter valid Username without spaces.
                   </div>
@@ -217,8 +210,12 @@ export const Registrations = () => {
                 }
               />
             </Grid>
-            <div className='registrationLoginBtn'>
-              <input type='submit' className='formLoginBtn' value='Sign Up' />
+            <div className='registrationBtn'>
+              <input
+                type='submit'
+                className='registrationFormBtn'
+                value='Sign Up'
+              />
             </div>
           </Grid>
         </Box>

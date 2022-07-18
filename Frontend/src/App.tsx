@@ -1,10 +1,12 @@
 import React from 'react';
-import { Registrations } from './Pages/Registration';
+import { Registrations } from './Pages/Registration/Registration';
+import { Login } from './Pages/LoginPage/Login';
 
 export const App: React.FC = () => {
   return (
     <div className='App'>
-      <Registrations />
+      {/* <Registrations /> */}
+      <Login />
     </div>
   );
 };
