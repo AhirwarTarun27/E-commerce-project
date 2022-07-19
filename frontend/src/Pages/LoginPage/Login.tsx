@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
+import { userService } from '../../services';
 
 interface LOGIN_FORM_DATA {
   Email: string;
@@ -32,7 +33,19 @@ export const Login = () => {
     console.log('target:', target);
   };
 
-  const onFieldSubmit = (data: LOGIN_FORM_DATA) => {};
+  const onFieldSubmit = async (data: LOGIN_FORM_DATA) => {
+    try {
+      console.log('data:', data);
+      const result = await userService.login(data);
+      if (result) {
+        alert('Login Successful');
+      } else {
+        alert('Login Failed');
+      }
+    } catch (error) {
+      throw error;
+    }
+  };
 
   return (
     <div className='flexBox'>
@@ -68,7 +81,7 @@ export const Login = () => {
 
               <FormControl variant='outlined' className='formControl mb-25'>
                 <TextField
-                  id='password'
+                  id='Password'
                   name='Password'
                   onChange={(e) => handleFieldChange(e.target)}
                   label='Password'
@@ -82,9 +95,7 @@ export const Login = () => {
                   })}
                   type={loginData.Password ? 'text' : 'password'}
                 />
-                {((formState.touched.Password &&
-                  loginData.Password.length === 0) ||
-                  errors.Password) && (
+                {errors.Password && (
                   <div className='errorMsg'>
                     length must be between 8 and 16 characters and without
                     spaces.
@@ -93,12 +104,8 @@ export const Login = () => {
               </FormControl>
             </Grid>
             <div className='loginButtonSection'>
-                <input
-                  type='submit'
-                  className='loginFormBtn'
-                  value='CONTINUE'
-                />
-              
+              <input type='submit' className='loginFormBtn' value='CONTINUE' />
+
               <div className='loginTexts'>
                 <p>or Connect with Social Media</p>
               </div>

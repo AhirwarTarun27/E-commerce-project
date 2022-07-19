@@ -3,5 +3,4 @@ export interface RegistrationSchema {
   UserName: string;
   Email: string;
   Password: string;
-  ConfirmPassword: string;
 }

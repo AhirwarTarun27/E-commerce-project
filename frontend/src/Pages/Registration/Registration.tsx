@@ -33,10 +33,10 @@ export const Registrations = () => {
     Email: '',
     UserName: '',
     Password: '',
-    ConfirmPassword: '',
     Tnc: false,
     ShowPassword: false,
   });
+  console.log('registrationData:', registrationData);
 
   const { register, handleSubmit, formState, errors } =
     useForm<REGISTER_FORM_DATA>({
@@ -46,7 +46,6 @@ export const Registrations = () => {
   const [loginData, setIsLoginData] = React.useState({
     Email: '',
     Password: '',
-    ConfirmPassword: '',
   });
 
   const handleFieldChange = (target: any) => {
@@ -57,14 +56,15 @@ export const Registrations = () => {
       });
     }
     setRegistrationData({ ...registrationData, [target.name]: target.value });
+    console.log('setRegistrationData:', setRegistrationData);
 
     setIsLoginData({ ...loginData, [target.name]: target.value });
   };
 
   const onFieldSubmit = async (data: REGISTER_FORM_DATA) => {
     try {
-      console.log('data:', data)
-      await userService.register(data);
+      console.log('data:', data);
+      const result = await userService.register(data);
     } catch (error) {
       console.log('error:', error);
     }
@@ -166,21 +166,18 @@ export const Registrations = () => {
                 <TextField
                   id='repeatPassword'
                   name='ConfirmPassword'
-                  onChange={(e) => handleFieldChange(e.target)}
                   label='Repeat Password'
                   autoComplete='off'
                   variant='standard'
                   inputRef={register({
-                    required: true,
+                    required: false,
                     maxLength: 16,
                     minLength: 8,
                     pattern: /^\S*$/,
                   })}
                   type={registrationData.ShowPassword ? 'text' : 'password'}
                 />
-                {((formState.touched.ConfirmPassword &&
-                  loginData.ConfirmPassword.length === 0) ||
-                  errors.ConfirmPassword) && (
+                {errors.ConfirmPassword && (
                   <div className='errorMsg'>
                     length must be between 8 and 16 characters and without
                     spaces.
@@ -215,7 +212,11 @@ export const Registrations = () => {
                 className='registrationFormBtn'
                 value='Sign Up'
               />
-            <Link to='/login'><button className='loginBtn'>Sign in <FontAwesomeIcon icon={faRightLong} /></button></Link>
+              <Link to='/login'>
+                <button className='loginBtn'>
+                  Sign in <FontAwesomeIcon icon={faRightLong} />
+                </button>
+              </Link>
             </div>
           </Grid>
         </Box>

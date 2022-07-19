@@ -7,7 +7,7 @@ export const App: React.FC = () => {
   return (
     <div className='App'>
       <Routes>
-        <Route path='/sign-up' element={<Registrations />} />
+        <Route path='/' element={<Registrations />} />
         <Route path='/login' element={<Login />} />
       </Routes>
     </div>
