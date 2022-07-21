@@ -31,3 +31,11 @@
 .keyFeatureBtn{
   margin-right: 9vw;
 }
+
+.productImage{
+  /* display: none; */
+  width: 400px;
+  border: 1px solid black;
+  margin: auto;
+  margin-top: 5%;
+}
