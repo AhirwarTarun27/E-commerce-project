@@ -22,52 +22,37 @@ interface PRODUCT_FORM_DATA {
   Description: string;
   KeyFeatures: any[];
   ProductPrice: string;
-  ProductImage: string;
+  ProductImage: any[];
   DiscountedPrice: string;
   Size: string;
-  FileUpload: string;
 }
 
 export const ProductDetails = () => {
-  // const [productFormData, setProductFormData] = useState<PRODUCT_FORM_DATA>({
-  //   ProductName: "",
-  //   Description: "",
-  //   KeyFeatures: [],
-  //   ProductPrice: "",
-  //   ProductImage: "",
-  //   DiscountedPrice: "",
-  //   Size: "",
-  //   FileUpload: "",
-  // });
+  const [productFormData, setProductFormData] = useState<PRODUCT_FORM_DATA>({
+    ProductName: "",
+    Description: "",
+    KeyFeatures: [],
+    ProductPrice: "",
+    ProductImage: [],
+    DiscountedPrice: "",
+    Size: "",
+  });
 
   //state hook setting up the form using use state
-  const [productName, setProductName] = useState("");
-  const [description, setDescription] = useState("");
   const [singleKeyFeature, setSingleKeyFeature] = useState("");
   const [keyFeatures, setKeyFeatures] = useState<string[]>([]);
-  const [productPrice, setProductPrice] = useState(0);
-  const [discountedPrice, setDiscountedPrice] = useState(0);
-  const [size, setSize] = useState("");
   const [productImage, setProductImage] = useState<any[]>([]);
-  const [previewImage, setPreviewImage] = useState<string[]>([]);
 
   // state for enabling the display of the image preview
-
-  const handleSizeChange = (event: any) => {
-    setSize(event.target.value);
-  };
-
   const handleFileUpload = (event: any) => {
     const files = Array.from(event.target.files);
 
-    setPreviewImage([]);
     setProductImage([]);
 
     files.forEach((file: any) => {
       const reader = new FileReader();
       reader.onload = (e: any) => {
         if (reader.readyState === 2) {
-          setPreviewImage((prevState: any) => [...prevState, reader.result]);
           setProductImage((prevState: any) => [...prevState, reader.result]);
         }
       };
@@ -76,49 +61,37 @@ export const ProductDetails = () => {
     console.log("files", files);
   };
 
+  //on change event for the form
+  const handleChange = (event: any) => {
+    const { name, value } = event.target;
+    setProductFormData((prevState: any) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
   // on form submit
   const onFieldSubmit = (event: any) => {
     event.preventDefault();
-
-    const formData = new FormData();
-
-    if (
-      formData.get("ProductName") !== "" &&
-      formData.get("Description") !== "" &&
-      formData.get("KeyFeatures") !== "" &&
-      formData.get("ProductPrice") !== "" &&
-      formData.get("ProductImage") !== "" &&
-      formData.get("DiscountedPrice") !== "" &&
-      formData.get("Size") !== "" &&
-      formData.get("FileUpload") !== ""
-    ) {
-      formData.set("ProductName", productName);
-      formData.set("Description", description);
-      formData.set("KeyFeatures", JSON.stringify(keyFeatures));
-      formData.set("ProductPrice", JSON.stringify(productPrice));
-      formData.set("DiscountedPrice", JSON.stringify(discountedPrice));
-      formData.set("Size", JSON.stringify(size));
-
-      productImage.forEach((image: any) => {
-        formData.append("ProductImage", image);
-      });
-
-      for (const [key, value] of formData) {
-        console.log(`${key} = ${value}`);
-      }
-      alert("Form Submitted");
-    } else {
-      alert("Please fill all the fields");
-    }
+    console.log("keyFeaturessdfsdfdfsdf", keyFeatures);
+    setProductFormData((prevState: any) => ({
+      ...prevState,
+      KeyFeatures: [...prevState.KeyFeatures, keyFeatures],
+      ProductImage: [...prevState.ProductImage, productImage],
+    }));
+    console.log("productFormData", productFormData);
   };
 
+  // on key feature change
   const keyFeatureSubmit = () => {
     setKeyFeatures([...keyFeatures, singleKeyFeature]);
     setSingleKeyFeature("");
+    console.log("keyFeatures:", keyFeatures);
   };
 
+  // discount rate change
   const discountRate = (price: any, disPrice: any) => {
-    if (price != undefined && disPrice != undefined) {
+    if (price !== undefined && disPrice !== undefined) {
       if (disPrice > price) {
         alert("Discounted Price cannot be greater than Product Price");
         return 0;
@@ -127,10 +100,6 @@ export const ProductDetails = () => {
       return value;
     }
   };
-
-  // const previewChange = () => {
-  //   setActive(true);
-  // };
 
   const closeImg = (e: any) => {
     e.preventDefault();
@@ -153,9 +122,9 @@ export const ProductDetails = () => {
               <FormControl variant="outlined" className="formControl mb-1">
                 <TextField
                   id="product-name"
-                  onChange={(e) => setProductName(String(e.target.value))}
+                  onChange={handleChange}
                   name="ProductName"
-                  value={productName || ""}
+                  value={productFormData.ProductName}
                   placeholder="Product Name..."
                   label="Product Name"
                   variant="standard"
@@ -165,10 +134,10 @@ export const ProductDetails = () => {
                 <TextField
                   id="Description"
                   name="Description"
-                  value={description || ""}
                   placeholder="Product Description..."
                   label="Product Description"
-                  onChange={(e) => setDescription(String(e.target.value))}
+                  onChange={handleChange}
+                  value={productFormData.Description}
                   autoComplete="on"
                   variant="standard"
                 />
@@ -235,10 +204,10 @@ export const ProductDetails = () => {
                 <TextField
                   id="price"
                   name="ProductPrice"
-                  value={productPrice || 0}
                   autoComplete="off"
                   type="number"
-                  onChange={(e) => setProductPrice(Number(e.target.value))}
+                  onChange={handleChange}
+                  value={productFormData.ProductPrice}
                   placeholder="Product Price..."
                   label="MRP"
                   variant="standard"
@@ -253,12 +222,10 @@ export const ProductDetails = () => {
                 <TextField
                   id="discountedPrice"
                   name="DiscountedPrice"
-                  value={discountedPrice || 0}
                   autoComplete="off"
                   type={"number"}
-                  onChange={(e) => {
-                    setDiscountedPrice(Number(e.target.value));
-                  }}
+                  onChange={handleChange}
+                  value={productFormData.DiscountedPrice}
                   placeholder="Discounted Price..."
                   label="Discounted Price"
                   InputProps={{
@@ -275,7 +242,12 @@ export const ProductDetails = () => {
                   name="Discount"
                   autoComplete="off"
                   type={"number"}
-                  value={discountRate(productPrice, discountedPrice) || 0}
+                  value={
+                    discountRate(
+                      productFormData.ProductPrice,
+                      productFormData.DiscountedPrice
+                    ) || 0
+                  }
                   placeholder="Discount..."
                   label="Discount"
                   InputProps={{
@@ -293,10 +265,10 @@ export const ProductDetails = () => {
                 <Select
                   labelId="demo-simple-select-standard-label"
                   id="demo-simple-select-standard"
-                  value={size || ""}
                   label="Sizes"
                   name="Size"
-                  onChange={handleSizeChange}
+                  onChange={handleChange}
+                  value={productFormData.Size}
                 >
                   <MenuItem value={"None"}>None</MenuItem>
                   <MenuItem value={"X-Small"}>X-Small</MenuItem>
@@ -324,7 +296,11 @@ export const ProductDetails = () => {
                 {productImage.map((image: any, index: number) => {
                   return (
                     <div key={index} className="productImageCard">
-                      <img src={image} className="productImageCard" />
+                      <img
+                        src={image}
+                        alt="crashed"
+                        className="productImageCard"
+                      />
                       <span onClick={closeImg} className="close">
                         &times;
                       </span>
