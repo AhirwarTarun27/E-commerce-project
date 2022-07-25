@@ -96,7 +96,7 @@ export const ProductDetails = () => {
         alert("Discounted Price cannot be greater than Product Price");
         return 0;
       }
-      const value = 100 - ((price - disPrice) / price) * 100;
+      const value = ((price - disPrice) / price) * 100;
       return value;
     }
   };
@@ -244,8 +244,8 @@ export const ProductDetails = () => {
                   type={"number"}
                   value={
                     discountRate(
-                      productFormData.ProductPrice,
-                      productFormData.DiscountedPrice
+                      Number(productFormData.ProductPrice),
+                      Number(productFormData.DiscountedPrice)
                     ) || 0
                   }
                   placeholder="Discount..."
