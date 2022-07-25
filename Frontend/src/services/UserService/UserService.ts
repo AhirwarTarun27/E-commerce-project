@@ -11,7 +11,7 @@ export class UserService {
     try {
       const response = await this.httpService.post('/registerUser', params);
       const { data } = response;
-      if (data.sc == 1) {
+      if (data.sc === 1) {
         return data;
       }
     } catch (error) {
@@ -23,7 +23,7 @@ export class UserService {
     try {
       const response = await this.httpService.post('/loginUser', params);
       const { data } = response;
-      if (data.sc == 1) {
+      if (data.sc === 1) {
         return data;
       }
     } catch (error) {

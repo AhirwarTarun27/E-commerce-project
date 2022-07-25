@@ -14,6 +14,7 @@
   margin: auto;
   padding: 5% 0% 0% 10%;
   height: 96vh;
+  overflow-y:auto;
 }
 
 .spaceBtw{
@@ -32,10 +33,32 @@
   margin-right: 9vw;
 }
 
-.productImage{
-  /* display: none; */
-  width: 400px;
-  border: 1px solid black;
-  margin: auto;
-  margin-top: 5%;
+.productImageCard{
+  width: 73px;
+  height: 49px;
+  display: inline-table;
+  margin-right: 8px;
+
+}
+.productImageCard .close {
+  
+  position: absolute;
+  /* top: 2px;
+  right: 2px; */
+  /* position: absolute; */
+  position: relative;
+  /* position: absolute; */
+  z-index: 100;
+  background-color: #cdb8b8;
+  padding: 0px;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 1.2;
+  top: -6.5vh;
+  left: 3.5vw;
+  text-align: center;
+  font-size: 24px;
+  line-height: 17px;
+  border-radius: 50%;
 }
