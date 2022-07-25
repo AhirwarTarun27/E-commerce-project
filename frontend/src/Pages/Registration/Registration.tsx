@@ -11,7 +11,7 @@ import {
   FormControlLabel,
 } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightLong } from '@fortawesome/free-solid-svg-icons';
 import { userService } from '../../services';
@@ -42,6 +42,8 @@ export const Registrations = () => {
     useForm<REGISTER_FORM_DATA>({
       mode: 'onChange',
     });
+  
+
 
   const [loginData, setIsLoginData] = React.useState({
     Email: '',
