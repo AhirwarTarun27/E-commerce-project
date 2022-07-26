@@ -1,14 +1,18 @@
-import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
-import { App } from "./App";
-import { store } from "./store/index";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Header } from "./Pages/Header/Header";
+import { Login } from "./Pages/LoginPage/Login";
+import { ProductDetails } from "./Pages/ProductDetails/ProductDetails";
+import { Registrations } from "./Pages/Registration/Registration";
 
 export const Router: React.FC = () => {
   return (
     <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
+      <Routes>
+        <Route path="/signup" element={<Registrations />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/product-details" element={<ProductDetails />} />
+        <Route path="/" element={<Header />} />
+      </Routes>
     </BrowserRouter>
   );
 };
