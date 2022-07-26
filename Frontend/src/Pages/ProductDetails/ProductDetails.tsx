@@ -1,6 +1,20 @@
 import "./ProductDetails.css";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+  setProductImage,
+  setProductName,
+  setDiscountedPrice,
+  setDiscription,
+  setKeyFeatures,
+  setProductPrice,
+  setSize,
+  updateWholeProductData,
+} from "../../store/productDataStore";
+
+// import {setProductData } from "../../store/index"
 
 import {
   Grid,
@@ -18,24 +32,26 @@ import {
 } from "@mui/material";
 
 interface PRODUCT_FORM_DATA {
-  ProductName: string;
-  Description: string;
-  KeyFeatures: any[];
-  ProductPrice: string;
-  ProductImage: any[];
-  DiscountedPrice: string;
-  Size: string;
+  productName: string;
+  discription: string;
+  keyFeatures: any[];
+  productPrice: string;
+  productImage: any[];
+  discountedPrice: string;
+  size: string;
 }
 
 export const ProductDetails = () => {
+  const dispatch = useDispatch();
+  const productDataStore = useSelector((state: any) => state);
   const [productFormData, setProductFormData] = useState<PRODUCT_FORM_DATA>({
-    ProductName: "",
-    Description: "",
-    KeyFeatures: [],
-    ProductPrice: "",
-    ProductImage: [],
-    DiscountedPrice: "",
-    Size: "",
+    productName: "",
+    discription: "",
+    keyFeatures: [],
+    productPrice: "",
+    productImage: [],
+    discountedPrice: "",
+    size: "",
   });
 
   //state hook setting up the form using use state
@@ -73,14 +89,26 @@ export const ProductDetails = () => {
   // on form submit
   const onFieldSubmit = (event: any) => {
     event.preventDefault();
+
     console.log("keyFeaturessdfsdfdfsdf", keyFeatures);
     setProductFormData((prevState: any) => ({
       ...prevState,
-      KeyFeatures: [...prevState.KeyFeatures, keyFeatures],
-      ProductImage: [...prevState.ProductImage, productImage],
+      keyFeatures: [...prevState.keyFeatures, keyFeatures],
+      productImage: [...prevState.productImage, productImage],
     }));
-    console.log("productFormData", productFormData);
+    console.log("productFormData......", productFormData);
+    dispatch(setProductName(productFormData.productName));
+    dispatch(setDiscription(productFormData.discription));
+    dispatch(setProductPrice(productFormData.productPrice));
+    dispatch(setDiscountedPrice(productFormData.discountedPrice));
+    dispatch(setSize(productFormData.size));
+    console.log("productDataStore", productDataStore);
   };
+
+  useEffect(() => {
+    console.log("productDataStore", productDataStore);
+    console.log("productFormData..........", productFormData);
+  });
 
   // on key feature change
   const keyFeatureSubmit = () => {
@@ -123,8 +151,8 @@ export const ProductDetails = () => {
                 <TextField
                   id="product-name"
                   onChange={handleChange}
-                  name="ProductName"
-                  value={productFormData.ProductName}
+                  name="productName"
+                  value={productFormData.productName}
                   placeholder="Product Name..."
                   label="Product Name"
                   variant="standard"
@@ -133,11 +161,11 @@ export const ProductDetails = () => {
               <FormControl variant="outlined" className="formControl mb-1">
                 <TextField
                   id="Description"
-                  name="Description"
+                  name="discription"
                   placeholder="Product Description..."
                   label="Product Description"
                   onChange={handleChange}
-                  value={productFormData.Description}
+                  value={productFormData.discription}
                   autoComplete="on"
                   variant="standard"
                 />
@@ -203,11 +231,11 @@ export const ProductDetails = () => {
               <FormControl variant="outlined" className="formControl mb-1">
                 <TextField
                   id="price"
-                  name="ProductPrice"
+                  name="productPrice"
                   autoComplete="off"
                   type="number"
                   onChange={handleChange}
-                  value={productFormData.ProductPrice}
+                  value={productFormData.productPrice}
                   placeholder="Product Price..."
                   label="MRP"
                   variant="standard"
@@ -221,11 +249,11 @@ export const ProductDetails = () => {
               <FormControl variant="outlined" className="formControl mb-1">
                 <TextField
                   id="discountedPrice"
-                  name="DiscountedPrice"
+                  name="discountedPrice"
                   autoComplete="off"
                   type={"number"}
                   onChange={handleChange}
-                  value={productFormData.DiscountedPrice}
+                  value={productFormData.discountedPrice}
                   placeholder="Discounted Price..."
                   label="Discounted Price"
                   InputProps={{
@@ -239,13 +267,13 @@ export const ProductDetails = () => {
               <FormControl variant="outlined" className="formControl mb-1">
                 <TextField
                   id="discount"
-                  name="Discount"
+                  name="discount"
                   autoComplete="off"
                   type={"number"}
                   value={
                     discountRate(
-                      Number(productFormData.ProductPrice),
-                      Number(productFormData.DiscountedPrice)
+                      Number(productFormData.productPrice),
+                      Number(productFormData.discountedPrice)
                     ) || 0
                   }
                   placeholder="Discount..."
@@ -266,9 +294,9 @@ export const ProductDetails = () => {
                   labelId="demo-simple-select-standard-label"
                   id="demo-simple-select-standard"
                   label="Sizes"
-                  name="Size"
+                  name="size"
                   onChange={handleChange}
-                  value={productFormData.Size}
+                  value={productFormData.size}
                 >
                   <MenuItem value={"None"}>None</MenuItem>
                   <MenuItem value={"X-Small"}>X-Small</MenuItem>
