@@ -8,15 +8,22 @@ import {
   faVimeo,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUser,
+  faSearch,
+  faShoppingCart,
+  faHeart,
+  faAngleRight,
+} from "@fortawesome/free-solid-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { Box, FormControl, NativeSelect } from "@mui/material";
+import { Box, FormControl, NativeSelect, TextField } from "@mui/material";
 import { useState } from "react";
 import { sidebarData } from "./sidebarData";
 import { Link } from "react-router-dom";
+import { Container } from "@mui/system";
 
 export const Header: React.FC = () => {
-  const [sideBar, setSideBar] = useState(false);
+  const [sideBar, setSideBar] = useState(true);
 
   const showSideBar = () => setSideBar(!sideBar);
   return (
@@ -57,6 +64,7 @@ export const Header: React.FC = () => {
                 inputProps={{
                   id: "uncontrolled-native",
                 }}
+                disableUnderline
                 className="textColor"
               >
                 <option className="textColor" value={"English"}>
@@ -82,6 +90,7 @@ export const Header: React.FC = () => {
                 inputProps={{
                   id: "uncontrolled-native",
                 }}
+                disableUnderline
                 className="textColor"
               >
                 <option className="textColor" value={"Us dollars"}>
@@ -96,7 +105,7 @@ export const Header: React.FC = () => {
               </NativeSelect>
             </FormControl>
           </Box>
-          <Box sx={{ width: 120 }}>
+          <Box onClick={showSideBar} sx={{ width: 120 }}>
             <span className="textColor accountBtn">
               <FontAwesomeIcon icon={faUser as IconProp} />
               &nbsp;&nbsp; Account
@@ -108,21 +117,192 @@ export const Header: React.FC = () => {
         className={sideBar ? "nav-menu active" : "nav-menu"}
         sx={{ width: "30%" }}
       >
-        <span onClick={showSideBar}>close</span>
-        <ul>
-          {sidebarData.map((item, index) => {
-            return (
-              <li key={index} className={item.cName}>
-                <Link className="textLink" to={item.link}>
-                  <span>{item.title}</span>
-                  &nbsp;&nbsp;
-                  {item.icon}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+        <div className="navContentBox">
+          <span className="closeBtn" onClick={showSideBar}>
+            Close
+          </span>
+          <ul className="ulStyle">
+            {sidebarData.map((item, index) => {
+              return (
+                <li key={index} className={item.cName}>
+                  <Link className="textLink" to={item.link}>
+                    <span>{item.title}</span>
+                    &nbsp;&nbsp;
+                    {item.icon}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </Box>
+      <div className="lowerContainer">
+        <Box className="secNavSection">
+          <span>
+            <img
+              className="foxicLogo"
+              src={require("../../assets/images/logo.webp")}
+              alt="logo"
+            />
+          </span>
+          <div className="containerSelectBtn">
+            <Box sx={{ width: 120 }}>
+              <FormControl className="blackText">
+                <NativeSelect
+                  variant="standard"
+                  defaultValue={"Home"}
+                  inputProps={{
+                    id: "uncontrolled-native",
+                  }}
+                  disableUnderline
+                  className="blackText"
+                  dir="rtl"
+                >
+                  <option className="blackText" value={"Home"}>
+                    Home
+                  </option>
+                  <option className="blackText" value={"Spanish"}>
+                    Spanish
+                  </option>
+                  <option className="blackText" value={"German"}>
+                    German
+                  </option>
+                  <option className="blackText" value={"French"}>
+                    French
+                  </option>
+                </NativeSelect>
+              </FormControl>
+            </Box>
+            <Box sx={{ width: 120 }}>
+              <FormControl className="blackText">
+                <NativeSelect
+                  variant="standard"
+                  defaultValue={"Pages"}
+                  inputProps={{
+                    id: "uncontrolled-native",
+                  }}
+                  disableUnderline
+                  className="blackText"
+                  dir="rtl"
+                >
+                  <option className="blackText" value={"Pages"}>
+                    Pages
+                  </option>
+                  <option className="blackText" value={"Spanish"}>
+                    Spanish
+                  </option>
+                  <option className="blackText" value={"German"}>
+                    German
+                  </option>
+                  <option className="blackText" value={"French"}>
+                    French
+                  </option>
+                </NativeSelect>
+              </FormControl>
+            </Box>
+            <Box sx={{ width: 120 }}>
+              <FormControl className="blackText">
+                <NativeSelect
+                  variant="standard"
+                  defaultValue={"Accessories"}
+                  inputProps={{
+                    id: "uncontrolled-native",
+                  }}
+                  disableUnderline
+                  className="blackText"
+                  dir="rtl"
+                >
+                  <option className="blackText" value={"Accessories"}>
+                    Accessories
+                  </option>
+                  <option className="blackText" value={"Spanish"}>
+                    Spanish
+                  </option>
+                  <option className="blackText" value={"German"}>
+                    German
+                  </option>
+                  <option className="blackText" value={"French"}>
+                    French
+                  </option>
+                </NativeSelect>
+              </FormControl>
+            </Box>
+            <Box sx={{ width: 120 }}>
+              <FormControl className="blackText">
+                <NativeSelect
+                  variant="standard"
+                  defaultValue={"Men"}
+                  inputProps={{
+                    id: "uncontrolled-native",
+                  }}
+                  disableUnderline
+                  className="blackText"
+                  dir="rtl"
+                >
+                  <option className="blackText" value={"Men"}>
+                    Men
+                  </option>
+                  <option className="blackText" value={"Spanish"}>
+                    Spanish
+                  </option>
+                  <option className="blackText" value={"German"}>
+                    German
+                  </option>
+                  <option className="blackText" value={"French"}>
+                    French
+                  </option>
+                </NativeSelect>
+              </FormControl>
+            </Box>
+            <Box sx={{ width: 120 }}>
+              <FormControl className="blackText">
+                <NativeSelect
+                  variant="standard"
+                  defaultValue={"Women"}
+                  inputProps={{
+                    id: "uncontrolled-native",
+                  }}
+                  disableUnderline
+                  className="blackText"
+                  dir="rtl"
+                >
+                  <option className="blackText" value={"Women"}>
+                    Women
+                  </option>
+                  <option className="blackText" value={"Spanish"}>
+                    Spanish
+                  </option>
+                  <option className="blackText" value={"German"}>
+                    German
+                  </option>
+                  <option className="blackText" value={"French"}>
+                    French
+                  </option>
+                </NativeSelect>
+              </FormControl>
+            </Box>
+          </div>
+          <div className="rightIconBox">
+            <FontAwesomeIcon
+              className="grayColor iconStyle"
+              icon={faSearch as IconProp}
+            />
+            <FontAwesomeIcon
+              className="grayColor iconStyle"
+              icon={faHeart as IconProp}
+            />
+            <FontAwesomeIcon
+              className="grayColor iconStyle"
+              icon={faShoppingCart as IconProp}
+            />
+          </div>
+        </Box>
+        <div className="endNavSection">
+          <span>Home</span>
+          <FontAwesomeIcon icon={faAngleRight as IconProp} />
+          <span>Category</span>
+        </div>
+      </div>
     </div>
   );
 };

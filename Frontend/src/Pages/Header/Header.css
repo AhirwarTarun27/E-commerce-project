@@ -23,7 +23,7 @@ body {
 .dropDownSection{
   display: flex;
   justify-content: space-between;
-  margin-top: .5vh;
+  margin-top: -0.5vh;
 }
 
 .accountBtn{
@@ -39,7 +39,7 @@ body {
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   width: 40vw;
-  height: 100vh;
+  height: 100vh;  
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -57,8 +57,12 @@ body {
   transition: 350ms;
 }
 
+.navContentBox{
+  margin-top: -50vh;
+}
+
 .textLink{
-  color: black;
+  color: rgb(75, 75, 75);
   text-decoration: none;
   transition: color 0.3s ease-in-out;
 }
@@ -69,10 +73,31 @@ body {
 
 .sidebarItem{
   text-decoration: none;
-  color: black;
+  color: rgb(75, 75, 75);
   padding: 15px;
+  font-weight: bold;
+  list-style-type: none;
 }
 
+.ulStyle{
+  padding: 0px 80px ;
+  margin-top: 40px;
+}
+.ulStyle li{
+  padding: 20px;
+  border-bottom: 1px solid #e2dede;
+}
+
+.closeBtn{
+  margin: 50px 90px;
+  color: rgb(75, 75, 75);;
+  top: 0;
+  
+  right: 20px;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
 
 
 /* Media screen css */
@@ -98,7 +123,7 @@ body {
 .iconBox{
   float: left;
   margin-left: 10px;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .icon{
@@ -281,3 +306,76 @@ body {
     transform: translate3d(0, -25%, 0);
   } */
 }
+
+/* center container css */
+.lowerContainer{
+  width: 77%;
+  margin: auto;
+}
+
+.blackText{
+  color: black;
+  font-weight: bold !important;
+  transition: color 0.3s ease-in-out;
+}
+
+.blackText:hover{
+  color: #24A8AA!important;
+}
+
+/* Second navbar section css............ */
+
+.secNavSection{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.foxicLogo{
+  padding: 1vh 0;
+  cursor: pointer;
+}
+
+.containerSelectBtn{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* rightIconBox style */
+.grayColor{
+  color: rgb(66, 65, 65)!important;
+  transition: color 0.3s ease-in-out;
+}
+
+.grayColor:hover{
+  color: #24A8AA!important;
+}
+
+.iconStyle{
+  font-size: 30px;
+  margin-right: 31px;
+  cursor: pointer;
+}
+
+.endNavSection{
+  display: flex;
+  background-color: #f1eeee;
+  width: 100vw;
+  position: relative;
+  left: -11.5vw;
+  padding: 10px;
+  align-items: center;
+  gap: 10px;
+  z-index: -1;
+}
+
+.endNavSection> span:nth-child(1){
+  margin-left: 11vw;
+
+}
+
+
+

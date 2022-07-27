@@ -13,13 +13,13 @@ export const sidebarData = [
     cName: "sidebarItem textColor",
   },
   {
-    title: "Log In",
-    icon: <FontAwesomeIcon icon={faArrowRightFromBracket as IconProp} />,
+    title: "Register",
+    icon: <FontAwesomeIcon icon={faUser as IconProp} />,
     link: "/signup",
     cName: "sidebarItem textColor",
   },
   {
-    title: "Log In",
+    title: "Product Detail Form",
     icon: <FontAwesomeIcon icon={faArrowRightFromBracket as IconProp} />,
     link: "/product-details",
     cName: "sidebarItem textColor",
