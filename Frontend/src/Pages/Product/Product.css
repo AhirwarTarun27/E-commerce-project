@@ -39,3 +39,54 @@
   max-width: 77%;
   margin: auto;
  }
+
+ .productSection{
+  display:flex;
+  width: 100%;
+  justify-content: space-between;
+ }
+
+ .leftDropdownBox{
+  width: 28%;
+  border: 1px solid red;
+  height: 600px;
+ }
+
+ .rightProductCardBox{
+  width: 69%;
+  border: 1px solid black;
+  height: 600px;
+ } 
+
+ .currentSectionBtn{
+  display: flex;
+  width: fit-content;
+  gap: 4px;
+  padding: 9px 22px;
+  background-color: #17C6AA;
+  font-size: 0.8em;
+  border-radius: 3px;
+  color: white;
+  transition: 0.3s;
+  cursor: pointer;
+  margin-bottom: 20px;
+ }
+
+ .currentSectionBtn:hover{
+  background-color: #282828;
+ }
+
+ .currentSection{
+  margin: 10px 11px 20px 0px;
+ }
+
+ .bg-grey{
+  background-color: #EFEFEF !important;
+  color: black;
+ }
+
+  .bg-grey:hover{
+    background-color: #282828 !important;
+    color: white;
+  }
+

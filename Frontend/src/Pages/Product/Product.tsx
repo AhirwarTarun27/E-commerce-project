@@ -1,6 +1,6 @@
 import "../Header/Header.css";
 import "./Product.css";
-import "../../index.css";
+// import "../../index.css";
 import "../../App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,21 +11,44 @@ import {
   faVimeo,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
+import AddIcon from "@mui/icons-material/Add";
 import {
   faUser,
   faSearch,
   faShoppingCart,
   faHeart,
+  faXmark,
   faAngleRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { Box, FormControl, NativeSelect, TextField } from "@mui/material";
+import {
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Box,
+  Button,
+  FormControl,
+  NativeSelect,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Container } from "@mui/system";
 import { Header } from "../Header/Header";
+import { categories } from "./dragDownData";
 
 export const Product: React.FC = () => {
+  const arr = ["Men", "Women", "Accessories"];
+
+  const dropdown = (array: any[]) => {
+    return array.map((item: any, index: number) => (
+      <AccordionDetails key={index}>
+        <Typography>{item}</Typography>
+      </AccordionDetails>
+    ));
+  };
+
   return (
     <>
       <Header />
@@ -105,6 +128,113 @@ export const Product: React.FC = () => {
           </div>
         </div>
         {/* Product Section........ */}
+        <div className="productSection">
+          <div className="leftDropdownBox">
+            <div className="blackText currentSection">Current section</div>
+            <div className="flex">
+              <div className="currentSectionBtn">
+                <span>GREY</span>
+                <span>
+                  <FontAwesomeIcon icon={faXmark as IconProp} />
+                </span>
+              </div>
+              <div className="currentSectionBtn">
+                <span>MEN</span>
+                <span>
+                  <FontAwesomeIcon icon={faXmark as IconProp} />
+                </span>
+              </div>
+              <div className="currentSectionBtn">
+                <span>ABOVE $200</span>
+                <span>
+                  <FontAwesomeIcon icon={faXmark as IconProp} />
+                </span>
+              </div>
+            </div>
+            <div className="flex">
+              <div className="currentSectionBtn bg-grey">
+                <span>CLEAR ALL</span>
+                <span>
+                  <FontAwesomeIcon icon={faXmark as IconProp} />
+                </span>
+              </div>
+              <div>Selected 6 items</div>
+            </div>
+            <Accordion sx={{ width: "100%" }}>
+              <AccordionSummary expandIcon={<AddIcon sx={{ width: "20px" }} />}>
+                <Typography
+                  sx={{
+                    fontWeight: "700",
+                    lineHeight: "1.4",
+                    fontSize: "0.8rem",
+                  }}
+                >
+                  Categories
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <div>
+                  {categories.map((item) => (
+                    <Accordion>
+                      <AccordionSummary
+                        expandIcon={
+                          <AddIcon sx={{ width: "10px" }} key={item} />
+                        }
+                      >
+                        <Typography
+                          sx={{
+                            fontWeight: "700",
+                            lineHeight: ".1px",
+                            fontSize: "0.8rem",
+                          }}
+                        >
+                          {item}
+                        </Typography>
+                      </AccordionSummary>
+                    </Accordion>
+                  ))}
+                </div>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion sx={{ width: "100%" }}>
+              <AccordionSummary expandIcon={<AddIcon sx={{ width: "20px" }} />}>
+                <Typography
+                  sx={{
+                    fontWeight: "700",
+                    lineHeight: "1.4",
+                    fontSize: "0.8rem",
+                  }}
+                >
+                  Colors
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <div>
+                  {categories.map((item) => (
+                    <Accordion>
+                      <AccordionSummary
+                        expandIcon={
+                          <AddIcon sx={{ width: "10px" }} key={item} />
+                        }
+                      >
+                        <Typography
+                          sx={{
+                            fontWeight: "700",
+                            lineHeight: ".1px",
+                            fontSize: "0.8rem",
+                          }}
+                        >
+                          {item}
+                        </Typography>
+                      </AccordionSummary>
+                    </Accordion>
+                  ))}
+                </div>
+              </AccordionDetails>
+            </Accordion>
+          </div>
+          <div className="rightProductCardBox"></div>
+        </div>
       </div>
     </>
   );
