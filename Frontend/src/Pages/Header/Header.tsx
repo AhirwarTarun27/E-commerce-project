@@ -297,11 +297,6 @@ export const Header: React.FC = () => {
             />
           </div>
         </Box>
-        <div className="endNavSection">
-          <span>Home</span>
-          <FontAwesomeIcon icon={faAngleRight as IconProp} />
-          <span>Category</span>
-        </div>
       </div>
     </div>
   );
