@@ -48,7 +48,6 @@
 
  .leftDropdownBox{
   width: 28%;
-  border: 1px solid red;
   height: 600px;
  }
 
@@ -90,3 +89,37 @@
     color: white;
   }
 
+  /* dropdown css */
+  .underDropDownBox{
+    padding-left: 10px;
+  }
+  .inputBox{
+    padding: 5px;
+  }
+  .checkboxText{
+    margin-left: 5px;
+  }
+
+  .gridBox{
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    gap: 5px;
+  }
+
+  .addImage{
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    cursor: pointer;
+    margin: 20px 0px;
+  }
+
+  .addImage img{
+    width: 100%;
+    display: block;
+    transition: transform 1s;
+  }
+  .addImage img:hover{
+    transform: scale(1.1);
+  }
+ 

@@ -1,9 +1,4 @@
-import {
-  createSlice,
-  configureStore,
-  PayloadAction,
-  combineReducers,
-} from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, combineReducers } from "@reduxjs/toolkit";
 
 interface PRODUCT_DATA_STORE {
   productName: string;

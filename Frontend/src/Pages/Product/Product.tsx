@@ -3,52 +3,30 @@ import "./Product.css";
 // import "../../index.css";
 import "../../App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFacebook,
-  faInstagram,
-  faTwitter,
-  faGooglePlusG,
-  faVimeo,
-  faLinkedin,
-} from "@fortawesome/free-brands-svg-icons";
 import AddIcon from "@mui/icons-material/Add";
-import {
-  faUser,
-  faSearch,
-  faShoppingCart,
-  faHeart,
-  faXmark,
-  faAngleRight,
-} from "@fortawesome/free-solid-svg-icons";
+import { faXmark, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
   Box,
-  Button,
   FormControl,
   NativeSelect,
-  TextField,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Container } from "@mui/system";
 import { Header } from "../Header/Header";
-import { categories } from "./dragDownData";
+import {
+  brands,
+  casual,
+  categories,
+  colors,
+  popularTags,
+  price,
+  size,
+} from "./dragDownData";
 
 export const Product: React.FC = () => {
-  const arr = ["Men", "Women", "Accessories"];
-
-  const dropdown = (array: any[]) => {
-    return array.map((item: any, index: number) => (
-      <AccordionDetails key={index}>
-        <Typography>{item}</Typography>
-      </AccordionDetails>
-    ));
-  };
-
   return (
     <>
       <Header />
@@ -58,6 +36,7 @@ export const Product: React.FC = () => {
         <span>Category</span>
       </div>
       <div className="productContainer">
+        {/* Title Section */}
         <div className="titleSection">
           <span>WOMEN'S</span>
         </div>
@@ -160,7 +139,7 @@ export const Product: React.FC = () => {
               </div>
               <div>Selected 6 items</div>
             </div>
-            <Accordion sx={{ width: "100%" }}>
+            <Accordion key={1} sx={{ width: "100%" }}>
               <AccordionSummary expandIcon={<AddIcon sx={{ width: "20px" }} />}>
                 <Typography
                   sx={{
@@ -175,11 +154,9 @@ export const Product: React.FC = () => {
               <AccordionDetails>
                 <div>
                   {categories.map((item) => (
-                    <Accordion>
+                    <Accordion key={item}>
                       <AccordionSummary
-                        expandIcon={
-                          <AddIcon sx={{ width: "10px" }} key={item} />
-                        }
+                        expandIcon={<AddIcon sx={{ width: "10px" }} />}
                       >
                         <Typography
                           sx={{
@@ -191,12 +168,23 @@ export const Product: React.FC = () => {
                           {item}
                         </Typography>
                       </AccordionSummary>
+                      <AccordionDetails>
+                        <div className="underDropDownBox">
+                          {item === "Casual" &&
+                            casual.map((item) => (
+                              <div className="inputBox" key={item}>
+                                <input type="checkbox" />
+                                <span className="checkboxText">{item}</span>
+                              </div>
+                            ))}
+                        </div>
+                      </AccordionDetails>
                     </Accordion>
                   ))}
                 </div>
               </AccordionDetails>
             </Accordion>
-            <Accordion sx={{ width: "100%" }}>
+            <Accordion key={2} sx={{ width: "100%" }}>
               <AccordionSummary expandIcon={<AddIcon sx={{ width: "20px" }} />}>
                 <Typography
                   sx={{
@@ -209,29 +197,121 @@ export const Product: React.FC = () => {
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <div>
-                  {categories.map((item) => (
-                    <Accordion>
-                      <AccordionSummary
-                        expandIcon={
-                          <AddIcon sx={{ width: "10px" }} key={item} />
-                        }
-                      >
-                        <Typography
-                          sx={{
-                            fontWeight: "700",
-                            lineHeight: ".1px",
-                            fontSize: "0.8rem",
-                          }}
-                        >
-                          {item}
-                        </Typography>
-                      </AccordionSummary>
-                    </Accordion>
+                <div className="underDropDownBox gridBox">
+                  {colors.map((item) => (
+                    <div className="gridItem" key={item}>
+                      <span>
+                        <input style={{ accentColor: item }} type="checkbox" />
+                        <span className="checkboxText">{item}</span>
+                      </span>
+                    </div>
                   ))}
                 </div>
               </AccordionDetails>
             </Accordion>
+            <Accordion key={2} sx={{ width: "100%" }}>
+              <AccordionSummary expandIcon={<AddIcon sx={{ width: "20px" }} />}>
+                <Typography
+                  sx={{
+                    fontWeight: "700",
+                    lineHeight: "1.4",
+                    fontSize: "0.8rem",
+                  }}
+                >
+                  Size
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <div className="underDropDownBox gridBox">
+                  {size.map((item) => (
+                    <div className="gridItem" key={item}>
+                      <span>
+                        <input type="checkbox" />
+                        <span className="checkboxText">{item}</span>
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion key={2} sx={{ width: "100%" }}>
+              <AccordionSummary expandIcon={<AddIcon sx={{ width: "20px" }} />}>
+                <Typography
+                  sx={{
+                    fontWeight: "700",
+                    lineHeight: "1.4",
+                    fontSize: "0.8rem",
+                  }}
+                >
+                  Brands
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <div className="underDropDownBox">
+                  {brands.map((item) => (
+                    <div className="inputBox" key={item}>
+                      <span>
+                        <input style={{ accentColor: item }} type="checkbox" />
+                        <span className="checkboxText">{item}</span>
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion key={2} sx={{ width: "100%" }}>
+              <AccordionSummary expandIcon={<AddIcon sx={{ width: "20px" }} />}>
+                <Typography
+                  sx={{
+                    fontWeight: "700",
+                    lineHeight: "1.4",
+                    fontSize: "0.8rem",
+                  }}
+                >
+                  Price
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <div className="underDropDownBox">
+                  {price.map((item) => (
+                    <div className="inputBox" key={item}>
+                      <span>
+                        <input style={{ accentColor: item }} type="checkbox" />
+                        <span className="checkboxText">{item}</span>
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion key={2} sx={{ width: "100%" }}>
+              <AccordionSummary expandIcon={<AddIcon sx={{ width: "20px" }} />}>
+                <Typography
+                  sx={{
+                    fontWeight: "700",
+                    lineHeight: "1.4",
+                    fontSize: "0.8rem",
+                  }}
+                >
+                  Popular tags
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <div className="underDropDownBox gridBox">
+                  {popularTags.map((item) => (
+                    <div className="currentSectionBtn">
+                      <span>{item}</span>
+                      <span>
+                        <FontAwesomeIcon icon={faXmark as IconProp} />
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </AccordionDetails>
+            </Accordion>
+            <div className="addImage">
+              <img src={require("../../assets/images/add.webp")} alt="" />
+            </div>
           </div>
           <div className="rightProductCardBox"></div>
         </div>
