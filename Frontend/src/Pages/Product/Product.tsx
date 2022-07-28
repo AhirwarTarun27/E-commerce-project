@@ -25,8 +25,14 @@ import {
   price,
   size,
 } from "./dragDownData";
+import { userService } from "../../services";
 
 export const Product: React.FC = () => {
+  const getData = async (params: string) => {
+    const response = await userService.productData(params);
+    console.log("response:", response);
+  };
+  getData("men's clothing");
   return (
     <>
       <Header />

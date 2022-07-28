@@ -30,4 +30,15 @@ export class UserService {
       throw error;
     }
   }
+
+  async productData(params: string): Promise<any> {
+    try {
+      const response = await this.httpService.get(`https://fakestoreapi.com/products/category/${params}`);
+      const { data } = response;
+      console.log("data", data.sc);
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
