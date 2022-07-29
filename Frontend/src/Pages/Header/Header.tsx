@@ -17,13 +17,27 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { Box, FormControl, NativeSelect, TextField } from "@mui/material";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { sidebarData } from "./sidebarData";
 import { Link } from "react-router-dom";
 import { Container } from "@mui/system";
 
 export const Header: React.FC = () => {
   const [sideBar, setSideBar] = useState(true);
+  const [scroll, setScroll] = useState(false);
+  const inputRef = useRef();
+
+  // const navBar = document.getElementsByClassName("lowerContainer");
+  // const navHeight =
+
+  // window.addEventListener("scroll", () => {
+  //   const scrollHeight = window.pageYOffset;
+  //   if (scrollHeight > navHeight) {
+  //     navBar.classList.add("fixNav");
+  //   } else {
+  //     navBar.classList.remove("fixNav");
+  //   }
+  // });
 
   const showSideBar = () => setSideBar(!sideBar);
   return (

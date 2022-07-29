@@ -26,13 +26,14 @@ import {
   size,
 } from "./dragDownData";
 import { userService } from "../../services";
+import { ProductCard } from "./ProductCard";
 
 export const Product: React.FC = () => {
-  const getData = async (params: string) => {
-    const response = await userService.productData(params);
-    console.log("response:", response);
-  };
-  getData("men's clothing");
+  // const getData = async (params: string) => {
+  //   const response = await userService.productData(params);
+  //   console.log("response:", response);
+  // };
+  // getData("men's clothing");
   return (
     <>
       <Header />
@@ -319,7 +320,9 @@ export const Product: React.FC = () => {
               <img src={require("../../assets/images/add.webp")} alt="" />
             </div>
           </div>
-          <div className="rightProductCardBox"></div>
+          <div className="rightProductCardBox">
+            <ProductCard />
+          </div>
         </div>
       </div>
     </>

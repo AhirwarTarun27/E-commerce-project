@@ -48,13 +48,19 @@
 
  .leftDropdownBox{
   width: 28%;
-  height: 600px;
+  height: fit-content;
+  position: sticky;
+  top: 0;
  }
 
  .rightProductCardBox{
   width: 69%;
-  border: 1px solid black;
-  height: 600px;
+  display: grid;
+ grid-template-columns: auto auto auto;
+ gap: 10px;
+ justify-content: center;
+ align-items: center;
+  height: fit-content;
  } 
 
  .currentSectionBtn{
@@ -122,4 +128,5 @@
   .addImage img:hover{
     transform: scale(1.1);
   }
+
  

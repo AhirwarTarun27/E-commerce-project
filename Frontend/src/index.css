@@ -38,3 +38,24 @@ code {
   align-items: baseline;
  }
 
+ .font1rem{
+  font-size: 1rem !important;
+  font-weight: bold;
+  color: #282828;
+ }
+
+ .addToCartBtn{
+  padding: 10px 22px;
+  background-color: #17C6AA;
+  font-size: .8rem;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  transition: 0.4s;
+  cursor: pointer;
+ }
+
+  .addToCartBtn:hover{
+    background-color: #282828;
+  }
+
