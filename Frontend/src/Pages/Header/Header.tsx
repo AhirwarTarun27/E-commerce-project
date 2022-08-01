@@ -39,7 +39,7 @@ export const Header: React.FC = () => {
   //   }
   // });
 
-  const showSideBar = () => setSideBar(!sideBar);
+  const showSideBar: any = () => setSideBar(!sideBar);
   return (
     <div className="container">
       <div className="centerContainer">
