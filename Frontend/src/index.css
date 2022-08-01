@@ -20,6 +20,10 @@ code {
   z-index: 9 !important;
 }
 
+.mt10{
+  margin-top: 10px;
+}
+
 .mb-25 {
   margin-bottom: 1.5rem !important;
 }
@@ -58,4 +62,6 @@ code {
   .addToCartBtn:hover{
     background-color: #282828;
   }
+
+
 

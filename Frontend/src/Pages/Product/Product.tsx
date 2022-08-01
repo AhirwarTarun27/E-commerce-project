@@ -30,6 +30,7 @@ import {
 import { userService } from "../../services";
 import { ProductCard } from "./ProductCard";
 import { useEffect, useState } from "react";
+import { Footer } from "../Footer/Footer";
 
 export const Product: React.FC = () => {
   const showedProducts = 6;
@@ -377,6 +378,7 @@ export const Product: React.FC = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
