@@ -16,7 +16,6 @@ import {
   NativeSelect,
   Typography,
 } from "@mui/material";
-import { v4 as uuidv4 } from "uuid";
 import { Header } from "../Header/Header";
 import {
   brands,
@@ -27,14 +26,14 @@ import {
   price,
   size,
 } from "./dragDownData";
-import { userService } from "../../services";
+// import { userService } from "../../services";
 import { ProductCard } from "./ProductCard";
 import { useEffect, useState } from "react";
 import { Footer } from "../Footer/Footer";
 
 export const Product: React.FC = () => {
   const showedProducts = 6;
-  const [products] = useState(product_card);
+  const [products, setProduct] = useState(product_card);
   const [productsShown, setProductsShown] = useState(showedProducts);
   const [remainingCount, setRemainingCount] = useState(
     products.length - showedProducts
@@ -42,6 +41,22 @@ export const Product: React.FC = () => {
   const [isHide, setIsHide] = useState(false);
 
   const [isHover, setIsHover] = useState(false);
+
+  //filtering functionality
+  const handleChange = (e: any) => {
+    e.preventDefault();
+    const { value } = e.target;
+    console.log("value:", value);
+    if (value === "Rating") {
+      products.sort((a, b) => b.rating.rate - a.rating.rate);
+      setProduct(products);
+      console.log("productsRating:", products);
+    } else if (value === "Price") {
+      products.sort((a, b) => b.price - a.price);
+      console.log("productsPrice:", products);
+      setProduct(products);
+    }
+  };
 
   const showMore = () => {
     if (productsShown + 6 <= products.length) {
@@ -54,10 +69,11 @@ export const Product: React.FC = () => {
 
   //for hiding the LODE MORE button
   useEffect(() => {
+    setProduct(products);
     if (productsShown >= products.length) {
       setIsHide(true);
     }
-  }, [productsShown, products.length]);
+  }, [productsShown, products.length, products]);
 
   const handleMouseOver = (e: any) => {
     setIsHover(true);
@@ -71,7 +87,6 @@ export const Product: React.FC = () => {
   //   console.log("response:", response);
   // };
   // getData("men's clothing");
-  const uuid = uuidv4();
   return (
     <>
       <Header />
@@ -124,6 +139,7 @@ export const Product: React.FC = () => {
               </label>
               <FormControl className="textLink">
                 <NativeSelect
+                  onChange={handleChange}
                   variant="filled"
                   defaultValue={"Featured"}
                   inputProps={{
@@ -148,7 +164,7 @@ export const Product: React.FC = () => {
             </Box>
           </div>
           <div>
-            <p>35 Item(s)</p>
+            <p>{product_card.length} Item(s)</p>
           </div>
         </div>
         {/* Product Section........ */}

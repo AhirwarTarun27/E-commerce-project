@@ -7,7 +7,6 @@ import { useMemo, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleDot, faEye, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { v4 as uuidv4 } from "uuid";
 
 export const ProductCard: any = ({
   products,
@@ -16,10 +15,7 @@ export const ProductCard: any = ({
   products: any;
   productsShown: any;
 }) => {
-  // const [currentPage, setCurrentPage] = useState(1);
-  const uuid = uuidv4();
-  const [productsPerPage] = useState(2);
-
+  console.log("productsCard:", products);
   const itemShown = useMemo(() => {
     return products.slice(0, productsShown).map((product: any) => {
       return (
@@ -64,32 +60,5 @@ export const ProductCard: any = ({
     });
   }, [products, productsShown]);
 
-  // const [spreadProduct, setSpreadProduct]: any[] = useState([]);
-
-  // Logic for displaying current products
-  // const indexOfLastProduct: any = currentPage * productsPerPage;
-  // const indexOfFirstProduct: any = indexOfLastProduct - productsPerPage;
-  // const currentProducts: any = product_card.slice(
-  //   indexOfFirstProduct,
-  //   indexOfLastProduct
-  // );
-
-  // Change page
-  // const paginate = (pageNumber: number) => {
-  //   setCurrentPage(pageNumber);
-  // };
-  // useEffect(() => {
-  //   console.log("currentProducts", currentProducts);
-  //   console.log("spreadProduct", spreadProduct);
-  // }, [currentProducts, spreadProduct]);
-
-  // const remainingProducts: any = product_card.length - indexOfLastProduct;
-  // console.log("remainingProducts:", remainingProducts);
-
-  // const handleMouseEnter = (e: any) => {
-  //   // console.log("e", e);
-  //   // <button>ADD TO CART</button>;
-  //   setIsHover(true);
-  // };
   return <>{itemShown.length ? itemShown : "Loading..."}</>;
 };
