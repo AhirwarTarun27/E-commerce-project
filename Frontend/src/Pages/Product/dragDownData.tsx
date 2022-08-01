@@ -25,7 +25,7 @@ export const colors = [
   "indigo",
 ];
 
-export const size = ["XXS", "XS", "S", "L", "XL", "XXL", "XXL"];
+export const size = ["XXS", "XS", "S", "L", "XL", "XXL", "XXXL"];
 
 export const brands = ["Adidas", "Nike", "Reebok", "Ralph Lauren", "Delpozo"];
 

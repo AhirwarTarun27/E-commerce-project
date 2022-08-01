@@ -137,6 +137,25 @@ transition: transform .4s ease-in-out;
 }
 
 
+.showMoreBtn{
+  
+  margin-top: 1%;
+  margin-left: 122%;
+}
+.hide{
+  display: none;
+}
 
+.pagination-container{
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 50%;
+  width: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 130px;
+  border: 2px solid black;
+}
 
 

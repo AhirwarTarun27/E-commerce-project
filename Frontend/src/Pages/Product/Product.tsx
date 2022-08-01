@@ -1,6 +1,7 @@
 import "../Header/Header.css";
 import "./Product.css";
 // import "../../index.css";
+import { product_card } from "./ProductData";
 import "../../App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AddIcon from "@mui/icons-material/Add";
@@ -15,6 +16,7 @@ import {
   NativeSelect,
   Typography,
 } from "@mui/material";
+import { v4 as uuidv4 } from "uuid";
 import { Header } from "../Header/Header";
 import {
   brands,
@@ -27,13 +29,48 @@ import {
 } from "./dragDownData";
 import { userService } from "../../services";
 import { ProductCard } from "./ProductCard";
+import { useEffect, useState } from "react";
 
 export const Product: React.FC = () => {
+  const showedProducts = 6;
+  const [products] = useState(product_card);
+  const [productsShown, setProductsShown] = useState(showedProducts);
+  const [remainingCount, setRemainingCount] = useState(
+    products.length - showedProducts
+  );
+  const [isHide, setIsHide] = useState(false);
+
+  const [isHover, setIsHover] = useState(false);
+
+  const showMore = () => {
+    if (productsShown + 6 <= products.length) {
+      setRemainingCount(remainingCount - showedProducts);
+      setProductsShown(productsShown + showedProducts);
+    } else {
+      setProductsShown(products.length);
+    }
+  };
+
+  //for hiding the LODE MORE button
+  useEffect(() => {
+    if (productsShown >= products.length) {
+      setIsHide(true);
+    }
+  }, [productsShown, products.length]);
+
+  const handleMouseOver = (e: any) => {
+    setIsHover(true);
+  };
+  const handleMouseOut = (e: any) => {
+    setIsHover(false);
+  };
+
   // const getData = async (params: string) => {
   //   const response = await userService.productData(params);
   //   console.log("response:", response);
   // };
   // getData("men's clothing");
+  const uuid = uuidv4();
   return (
     <>
       <Header />
@@ -216,7 +253,7 @@ export const Product: React.FC = () => {
                 </div>
               </AccordionDetails>
             </Accordion>
-            <Accordion key={2} sx={{ width: "100%" }}>
+            <Accordion key={3} sx={{ width: "100%" }}>
               <AccordionSummary expandIcon={<AddIcon sx={{ width: "20px" }} />}>
                 <Typography
                   sx={{
@@ -241,7 +278,7 @@ export const Product: React.FC = () => {
                 </div>
               </AccordionDetails>
             </Accordion>
-            <Accordion key={2} sx={{ width: "100%" }}>
+            <Accordion key={4} sx={{ width: "100%" }}>
               <AccordionSummary expandIcon={<AddIcon sx={{ width: "20px" }} />}>
                 <Typography
                   sx={{
@@ -266,7 +303,7 @@ export const Product: React.FC = () => {
                 </div>
               </AccordionDetails>
             </Accordion>
-            <Accordion key={2} sx={{ width: "100%" }}>
+            <Accordion key={5} sx={{ width: "100%" }}>
               <AccordionSummary expandIcon={<AddIcon sx={{ width: "20px" }} />}>
                 <Typography
                   sx={{
@@ -291,7 +328,7 @@ export const Product: React.FC = () => {
                 </div>
               </AccordionDetails>
             </Accordion>
-            <Accordion key={2} sx={{ width: "100%" }}>
+            <Accordion key={6} sx={{ width: "100%" }}>
               <AccordionSummary expandIcon={<AddIcon sx={{ width: "20px" }} />}>
                 <Typography
                   sx={{
@@ -306,7 +343,7 @@ export const Product: React.FC = () => {
               <AccordionDetails>
                 <div className="underDropDownBox gridBox">
                   {popularTags.map((item) => (
-                    <div className="currentSectionBtn">
+                    <div key={item} className="currentSectionBtn">
                       <span>{item}</span>
                       <span>
                         <FontAwesomeIcon icon={faXmark as IconProp} />
@@ -321,7 +358,22 @@ export const Product: React.FC = () => {
             </div>
           </div>
           <div className="rightProductCardBox">
-            <ProductCard />
+            <ProductCard products={products} productsShown={productsShown} />
+            <div
+              className={isHide ? "showMoreBtn hide" : "showMoreBtn"}
+              onMouseOver={handleMouseOver}
+              onMouseOut={handleMouseOut}
+            >
+              {isHover ? (
+                <div onClick={showMore} className="pagination-container">
+                  {`${remainingCount} out of ${product_card.length}`}
+                </div>
+              ) : (
+                <div onClick={showMore} className="pagination-container">
+                  LOAD MORE
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
