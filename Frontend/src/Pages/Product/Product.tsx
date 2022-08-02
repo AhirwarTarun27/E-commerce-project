@@ -30,13 +30,28 @@ import {
 import { ProductCard } from "./ProductCard";
 import { useEffect, useState } from "react";
 import { Footer } from "../Footer/Footer";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setProductData,
+  sortByMenCategory,
+  sortByPrice,
+  sortByRate,
+} from "../../store/productPageStore";
 
 export const Product: React.FC = () => {
+  const dispatch = useDispatch();
+
+  // dispatching the product data to the store
+  for (let i = 0; i < product_card.length; i++) {
+    dispatch(setProductData(product_card[i]));
+  }
+
+  const productData: any = useSelector((state: any) => state.productPage);
+
   const showedProducts = 6;
-  const [products, setProduct] = useState(product_card);
   const [productsShown, setProductsShown] = useState(showedProducts);
   const [remainingCount, setRemainingCount] = useState(
-    products.length - showedProducts
+    productData.length - showedProducts
   );
   const [isHide, setIsHide] = useState(false);
 
@@ -46,40 +61,46 @@ export const Product: React.FC = () => {
   const handleChange = (e: any) => {
     e.preventDefault();
     const { value } = e.target;
-    console.log("value:", value);
     if (value === "Rating") {
-      products.sort((a, b) => b.rating.rate - a.rating.rate);
-      setProduct(products);
-      console.log("productsRating:", products);
+      dispatch(sortByRate());
     } else if (value === "Price") {
-      products.sort((a, b) => b.price - a.price);
-      console.log("productsPrice:", products);
-      setProduct(products);
+      dispatch(sortByPrice());
     }
   };
 
   const showMore = () => {
-    if (productsShown + 6 <= products.length) {
+    if (productsShown + 6 <= productData.length) {
       setRemainingCount(remainingCount - showedProducts);
       setProductsShown(productsShown + showedProducts);
     } else {
-      setProductsShown(products.length);
+      setProductsShown(productData.length);
     }
   };
 
   //for hiding the LODE MORE button
   useEffect(() => {
-    setProduct(products);
-    if (productsShown >= products.length) {
+    if (productsShown >= productData.length) {
       setIsHide(true);
     }
-  }, [productsShown, products.length, products]);
+  }, [productsShown, productData.length, productData]);
 
   const handleMouseOver = (e: any) => {
     setIsHover(true);
   };
   const handleMouseOut = (e: any) => {
     setIsHover(false);
+  };
+
+  const handleManData = (e: any) => {
+    e.preventDefault();
+    const filterData = productData.filter((product: any) => {
+      return product.category === "men's clothing";
+    });
+    console.log("filterData:", filterData);
+    for (let i = 0; i < filterData.length; i++) {
+      dispatch(setProductData(filterData[i]));
+    }
+    console.log("productData", productData);
   };
 
   // const getData = async (params: string) => {
@@ -234,7 +255,10 @@ export const Product: React.FC = () => {
                           {item === "Casual" &&
                             casual.map((item) => (
                               <div className="inputBox" key={item}>
-                                <input type="checkbox" />
+                                <input
+                                  onChange={handleManData}
+                                  type="checkbox"
+                                />
                                 <span className="checkboxText">{item}</span>
                               </div>
                             ))}
@@ -375,7 +399,7 @@ export const Product: React.FC = () => {
             </div>
           </div>
           <div className="rightProductCardBox">
-            <ProductCard products={products} productsShown={productsShown} />
+            <ProductCard productsShown={productsShown} />
             <div
               className={isHide ? "showMoreBtn hide" : "showMoreBtn"}
               onMouseOver={handleMouseOver}

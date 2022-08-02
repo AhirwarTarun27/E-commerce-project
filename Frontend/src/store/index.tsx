@@ -1,6 +1,11 @@
+import productPageStore from "./productPageStore";
+
 const { configureStore } = require("@reduxjs/toolkit");
 const { default: productDataStore } = require("./productDataStore");
 
 export const store = configureStore({
-  reducer: productDataStore,
+  reducer: {
+    productData: productDataStore,
+    productPage: productPageStore,
+  },
 });

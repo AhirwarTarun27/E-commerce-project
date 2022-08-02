@@ -3,21 +3,16 @@ import "../../index.css";
 import "../../App.css";
 import "../Header/Header.css";
 import { Star } from "./Star";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleDot, faEye, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { useSelector } from "react-redux";
 
-export const ProductCard: any = ({
-  products,
-  productsShown,
-}: {
-  products: any;
-  productsShown: any;
-}) => {
-  console.log("productsCard:", products);
+export const ProductCard: any = ({ productsShown }: { productsShown: any }) => {
+  const productData = useSelector((state: any) => state.productPage);
   const itemShown = useMemo(() => {
-    return products.slice(0, productsShown).map((product: any) => {
+    return productData.slice(0, productsShown).map((product: any) => {
       return (
         <div key={product.id} className="card">
           <div className="noOverlayCard" key={product.id}>
@@ -58,7 +53,7 @@ export const ProductCard: any = ({
         </div>
       );
     });
-  }, [products, productsShown]);
+  }, [productData, productsShown]);
 
   return <>{itemShown.length ? itemShown : "Loading..."}</>;
 };
