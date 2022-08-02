@@ -7,10 +7,20 @@ import { useMemo } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleDot, faEye, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setProductDiscription } from "../../store/discriptionStore";
+import { useNavigate } from "react-router-dom";
 
 export const ProductCard: any = ({ productsShown }: { productsShown: any }) => {
   const productData = useSelector((state: any) => state.productPage);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleProduct = (product: any) => {
+    dispatch(setProductDiscription(product));
+    navigate("/product-discription");
+    console.log("product", product);
+  };
   const itemShown = useMemo(() => {
     return productData.slice(0, productsShown).map((product: any) => {
       return (
@@ -28,7 +38,7 @@ export const ProductCard: any = ({ productsShown }: { productsShown: any }) => {
 
             <p className="grayColor productPrice font1rem">$ {product.price}</p>
           </div>
-          <div className="overlayBox">
+          <div onClick={() => handleProduct(product)} className="overlayBox">
             <div className="upperOverlay">
               <div className="leftCard">
                 <img className="circleImage" src={product.image} alt="" />
