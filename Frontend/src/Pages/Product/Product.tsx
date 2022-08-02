@@ -93,13 +93,14 @@ export const Product: React.FC = () => {
 
   const handleManData = (e: any) => {
     e.preventDefault();
-    const filterData = productData.filter((product: any) => {
-      return product.category === "men's clothing";
-    });
-    console.log("filterData:", filterData);
-    for (let i = 0; i < filterData.length; i++) {
-      dispatch(setProductData(filterData[i]));
-    }
+    // const filterData = productData.filter((product: any) => {
+    //   return product.category === "men's clothing";
+    // });
+    // console.log("filterData:", filterData);
+    // for (let i = 0; i < filterData.length; i++) {
+    //   dispatch(setProductData(filterData[i]));
+    // }
+    dispatch(sortByMenCategory());
     console.log("productData", productData);
   };
 
