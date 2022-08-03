@@ -1,0 +1,133 @@
+
+
+.productDiscriptionContainer{
+  /* border: 1px solid red; */
+  width: 77%;
+  margin: auto;
+  padding: 10px;
+  margin-top: 1%;
+  height: fit-content;
+  position: relative;
+}
+
+.fs9{
+  font-size:  .9em;
+  line-height: 1em;
+}
+
+.firstDesSection{
+  height: 5%;
+}
+
+.firstDesSection> div:nth-child(1){
+  font-size: 1.2em;
+}
+
+.firstDesSection> div:nth-child(2){
+  width: 10%;
+  display: flex;
+  position: absolute;
+    right: 6%;
+}
+.firstDesSection> div:nth-child(2) img{
+  
+  width: 50%;
+  margin-right: 5px;
+  height: 100%;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.secondDesSection{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: fit-content;
+  margin-top: 3%;
+  color: #282828;
+}
+
+.leftDesSection{
+  width: 40%;
+  height: fit-content;
+}
+
+.rightDesSection{
+  width: 55%;
+  height: fit-content;
+}
+
+.leftDesImage{
+  width: 100%;
+}
+
+.leftDesDownImage{
+  height: 20%;
+  width: 20%;
+  border: 1px solid yellow;
+}
+
+.lineThrough{
+  text-decoration: line-through;
+}
+
+.pinkText{
+  color: #ff0080;
+}
+
+.rightDesTop{
+  display: flex;
+  justify-content: space-between;
+}
+
+.desProductPrice{
+  font-size: 2.5em;
+}
+
+.desPriceBox{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+  height: fit-content;
+}
+
+.desPriceBox ~ div{
+  width: 40%;
+  justify-content: space-between;
+  align-items: center;
+  height: 55px;
+  background-color: #F8F8F9;
+  padding: 10px;
+}
+
+.desPriceBox ~ div i {
+  padding: 10px;
+  font-size: 1.5em;
+}
+
+/* sort description box */
+.sortDesBox{
+  margin: 5% 0%;
+}
+
+.twoColumnGrid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.twoColumnGrid div{
+  margin-top: 15px;
+  align-items: center;
+}
+
+.boldUnderline{
+  width: 100%;
+  background-color: #282828;
+  height: 3px;
+  margin-top: 4px;
+}
+
+.timerBox{
+  width: 79%;
+  margin: 5% 0%;
+}

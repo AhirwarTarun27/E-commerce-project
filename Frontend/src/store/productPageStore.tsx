@@ -40,7 +40,7 @@ const productPageStore = createSlice({
       });
     },
     sortByMenCategory: (state) => {
-      state = state.filter((product) => product.category === "men's category");
+      return state.filter((product) => product.category === "men's clothing");
     },
   },
 });

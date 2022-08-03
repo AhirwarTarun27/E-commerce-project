@@ -17,6 +17,7 @@ export const ProductCard: any = ({ productsShown }: { productsShown: any }) => {
   const navigate = useNavigate();
 
   const handleProduct = (product: any) => {
+    localStorage.setItem("product", JSON.stringify(product));
     dispatch(setProductDiscription(product));
     navigate("/product-discription");
     console.log("product", product);

@@ -20,6 +20,7 @@ code {
   z-index: 9 !important;
 }
 
+/* margin top in pixcels */
 .mt10{
   margin-top: 10px;
 }
@@ -40,6 +41,7 @@ code {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  
  }
 
  .font1rem{
@@ -64,4 +66,31 @@ code {
   }
 
 
+  .hoverColor{
+    color: black;
+    cursor: pointer;
+    transition: color .3s ease-in-out;
+  }
+  .hoverColor:hover{
+    color: #24A8AA;
+  }
 
+  .ml6{
+    margin-left: 6%;
+  }
+
+  img{
+    width: 100%;
+  }
+
+  /* width in percentage */
+  .width20{
+    width: 40%;
+  }
+
+  /* primary blue color */
+  .primaryColor{
+    color: #17C6AA;
+  }
+
+  
